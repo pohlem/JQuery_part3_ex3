@@ -32,10 +32,12 @@
       $('#closeOrNot').val('Plus');
     } else if(parseInt($('#text').val())>result){
       $('#closeOrNot').val('Moins');
-    } else {
+    } else if(parseInt($('#text').val())==result){
       alert('Correct ! Vous avez trouvé le Résultat : '+result+' en '+$('#numberClick').val()+' clic(s).');
       $('#text').attr('disabled', true);
       init();
+    } else {
+      alert('Erreur');
     }
   });
 </script>
