@@ -13,7 +13,7 @@
     <input type="text"  id="numberClick" value=0 disabled></input>
     <input type="button" name="button" id="submit" value="Sousmettre Résultat"></input>
   </form>
-    <input type="button" name="button" id="go" value="C'est parti"></input>
+  <input type="button" name="button" id="go" value="C'est parti"></input>
   <script>
    function init(){
     $('#text').val('');
@@ -24,22 +24,24 @@
     $('#text').attr('disabled', false);
     init();
     result = Math.ceil(Math.random()*100)+1;
-    console.log(result);
   });
   $('#submit').click(function(event){
-    $('#numberClick').val(parseInt($('#numberClick').val())+1);
-    if(parseInt($('#text').val())<result){
-      $('#closeOrNot').val('Plus');
-    } else if(parseInt($('#text').val())>result){
-      $('#closeOrNot').val('Moins');
-    } else if(parseInt($('#text').val())==result){
-      alert('Correct ! Vous avez trouvé le Résultat : '+result+' en '+$('#numberClick').val()+' clic(s).');
-      $('#text').attr('disabled', true);
-      init();
-    } else {
-      alert('Erreur');
-    }
-  });
-</script>
+    var submit=parseInt($('#text').val());
+      if(isNaN(submit) || submit>100 || submit<=0){
+        alert('Erreur');
+      }else{
+        $('#numberClick').val(parseInt($('#numberClick').val())+1);
+        if(submit<result){
+          $('#closeOrNot').val('Plus');
+        }else if(submit>result){
+          $('#closeOrNot').val('Moins');
+        }else{
+          alert('Correct ! Vous avez trouvé le Résultat : '+result+' en '+$('#numberClick').val()+' clic(s).');
+          $('#text').attr('disabled', true);
+          init();
+        }
+      }
+    });
+  </script>
 </body>
 </html>
