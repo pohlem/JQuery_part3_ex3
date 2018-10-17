@@ -15,32 +15,35 @@
   </form>
   <input type="button" name="button" id="go" value="C'est parti"></input>
   <script>
-   function init(){
-    $('#text').val('');
-    $('#closeOrNot').val('Proche ou pas');
-    $('#numberClick').val(0);
-  }
-  $('#go').click(function(event){
-    $('#text').attr('disabled', false);
-    init();
-    result = Math.ceil(Math.random()*100)+1;
-  });
-  $('#submit').click(function(event){
-    var submit=parseInt($('#text').val());
-      if(isNaN(submit) || submit>100 || submit<=0){
-        alert('Erreur');
-      }else{
-        $('#numberClick').val(parseInt($('#numberClick').val())+1);
-        if(submit<result){
-          $('#closeOrNot').val('Plus');
-        }else if(submit>result){
-          $('#closeOrNot').val('Moins');
-        }else{
-          alert('Correct ! Vous avez trouvé le Résultat : '+result+' en '+$('#numberClick').val()+' clic(s).');
-          $('#text').attr('disabled', true);
-          init();
-        }
+    $(function(){
+      result = 0;
+      function init(){
+        $('#text').val('');
+        $('#closeOrNot').val('Proche ou pas');
+        $('#numberClick').val(0);
       }
+      $('#go').click(function(){
+        $('#text').attr('disabled', false);
+        init();
+        result = Math.ceil(Math.random()*100)+1;
+      });
+      $('#submit').click(function(){
+        var submit=parseInt($('#text').val());
+        if(isNaN(submit) || submit>100 || submit<=0){
+          alert('Erreur');
+        }else{
+          $('#numberClick').val(parseInt($('#numberClick').val())+1);
+          if(submit<result){
+            $('#closeOrNot').val('Plus');
+          }else if(submit>result){
+            $('#closeOrNot').val('Moins');
+          }else{
+            alert('Correct ! Vous avez trouvé le Résultat : '+result+' en '+$('#numberClick').val()+' clic(s).');
+            $('#text').attr('disabled', true);
+            init();
+          }
+        }
+      });
     });
   </script>
 </body>
